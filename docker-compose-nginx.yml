@@ -38,7 +38,7 @@ services:
       - nginx
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./acme.sh:/etc/acme.sh
+      - acme:/etc/acme.sh
     environment:
       - DEFAULT_EMAIL=bojidar.marinov.bg@gmail.com
       - NGINX_DOCKER_GEN_CONTAINER=dockergen-nginx
@@ -47,6 +47,7 @@ volumes:
   certs:
   vhost:
   html:
+  acme:
 networks:
   default:
     ipam:

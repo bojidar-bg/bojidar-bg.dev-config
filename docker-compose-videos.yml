@@ -1,18 +1,9 @@
 version: "2"
 
 services:
-  nginx:
+  nginx-videos:
     image: nginx:1.25-alpine
     container_name: nginx-videos
     volumes:
       - /mnt/videos:/usr/share/nginx/html
 
-volumes:
-  certs:
-  vhost:
-  html:
-networks:
-  default:
-    ipam:
-     config:
-       - subnet: 172.18.0.0/16
