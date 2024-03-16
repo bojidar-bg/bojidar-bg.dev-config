@@ -11,7 +11,9 @@ volumes:
   videos:
     driver: rclone # mkdir /var/lib/docker-plugins/rclone/{config,cache} && ln -s /root/.config/rclone/rclone.conf /var/lib/docker-plugins/rclone/config && docker plugin install rclone/docker-volume-rclone:arm64 args="-v" --alias rclone --grant-all-permissions
     driver_opts:
-      remote: storagebox
+      remote: storagebox:videos
+      gid: 101
+      uid: 101
       # allow_other: 'true'
       # vfs_cache_mode: full
       # poll_interval: 0
