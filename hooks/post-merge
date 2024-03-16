@@ -1,4 +1,12 @@
 #!/bin/sh
 
-echo "Hi!"
+pwd
+
+if git show --no-patch | grep -E '\[(skip-ci|skip|no-update)\]|wip'; then
+  exit
+fi
+
+echo "Updating..."
+
+docker compose up -d
 
