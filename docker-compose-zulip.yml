@@ -1,9 +1,9 @@
 version: "2"
 services:
   database:
-    container-name: zulip-postgres
+    container_name: zulip-postgres
     image: "zulip/zulip-postgresql:14"
-    pull-policy: always
+    pull_policy: always
     restart: unless-stopped
     environment:
       POSTGRES_DB: "zulip"
@@ -15,9 +15,9 @@ services:
     volumes:
       - "postgresql-14:/var/lib/postgresql/data:rw"
   memcached:
-    container-name: zulip-memcached
+    container_name: zulip-memcached
     image: "memcached:1-alpine"
-    pull-policy: always
+    pull_policy: always
     restart: unless-stopped
     command:
       - "sh"
@@ -32,9 +32,9 @@ services:
       MEMCACHED_SASL_PWDB: "/home/memcache/memcached-sasl-db"
       MEMCACHED_PASSWORD: "${ZULIP_MEMCACHED_PASS:?ZULIP_MEMCACHED_PASS}"
   rabbitmq:
-    container-name: zulip-rabbitmq
+    container_name: zulip-rabbitmq
     image: "rabbitmq:3.7.7"
-    pull-policy: always
+    pull_policy: always
     restart: unless-stopped
     environment:
       RABBITMQ_DEFAULT_USER: "zulip"
@@ -42,9 +42,9 @@ services:
     volumes:
       - "rabbitmq:/var/lib/rabbitmq:rw"
   redis:
-    container-name: zulip-redis
+    container_name: zulip-redis
     image: "redis:7-alpine"
-    pull-policy: always
+    pull_policy: always
     restart: unless-stopped
     command:
       - "sh"
@@ -57,12 +57,12 @@ services:
     volumes:
       - "redis:/data:rw"
   zulip:
-    container-name: zulip-zulip
+    container_name: zulip-zulip
     image: "zulip/docker-zulip"
     build:
       context: docker-zulip
       dockerfile: Dockerfile
-    pull-policy: build
+    pull_policy: build
     restart: unless-stopped
     environment:
       DB_HOST: "database"
