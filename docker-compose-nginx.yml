@@ -12,6 +12,7 @@ services:
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
+    restart: unless-stopped
 
   dockergen:
     container_name: dockergen-nginx
@@ -34,6 +35,7 @@ services:
       context: acme-companion
       dockerfile: Dockerfile
     pull_policy: build
+    restart: unless-stopped
     volumes_from:
       - nginx
     volumes:
