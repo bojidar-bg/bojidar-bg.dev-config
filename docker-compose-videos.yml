@@ -5,10 +5,10 @@ services:
     image: nginx:1.25-alpine
     container_name: nginx-videos
     volumes:
-      - videos-up1:/usr/share/nginx/html/videos:ro
+      - videos:/usr/share/nginx/html/videos:ro
 
 volumes:
-  videos-up1:
+  videos:
     driver: rclone # mkdir /var/lib/docker-plugins/rclone/{config,cache} && ln -s /root/.config/rclone/rclone.conf /var/lib/docker-plugins/rclone/config && docker plugin install rclone/docker-volume-rclone:arm64 args="-v" --alias rclone --grant-all-permissions
     driver_opts:
       remote: storagebox
