@@ -14,6 +14,6 @@ volumes:
       remote: 'storagebox:videos'
       gid: 101
       uid: 101
-      # allow_other: 'true'
+      allow_other: 'true'
       # vfs_cache_mode: full
       # poll_interval: 0
