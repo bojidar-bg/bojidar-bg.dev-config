@@ -5,5 +5,18 @@ services:
     image: nginx:1.25-alpine
     container_name: nginx-videos
     volumes:
-      - /mnt/videos:/usr/share/nginx/html
+      - videos:/usr/share/nginx/html
 
+volumes:
+  videos:
+    driver: rclone # docker plugin install rclone/docker-volume-rclone:arm64 args="-v" --alias rclone --grant-all-permissions
+    driver_opts:
+      type: sftp
+      host: uXXXXXX.your-storagebox.de
+      user: uXXXXXX
+      port: 23
+      key_file: /root/.ssh/id_rsa
+      known_hosts_file: /root/.ssh/known_hosts
+      shell_type: unix
+      md5sum_command: md5 -r
+      sha1sum_command: sha1 -r
