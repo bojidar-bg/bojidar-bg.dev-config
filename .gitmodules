@@ -1,0 +1,15 @@
+[submodule "acme-companion"]
+	path = acme-companion
+	url = https://github.com/nginx-proxy/acme-companion
+[submodule "acme.sh"]
+	path = acme.sh
+	url = https://github.com/acmesh-official/acme.sh
+[submodule "docker-gen"]
+	path = docker-gen
+	url = https://github.com/nginx-proxy/docker-gen
+[submodule "docker-zulip"]
+	path = docker-zulip
+	url = https://github.com/zulip/docker-zulip.git
+[submodule "nginx-proxy"]
+	path = nginx-proxy
+	url = https://github.com/nginx-proxy/nginx-proxy
