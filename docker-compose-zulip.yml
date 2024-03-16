@@ -1,7 +1,9 @@
 version: "2"
 services:
   database:
+    container-name: zulip-postgres
     image: "zulip/zulip-postgresql:14"
+    pull-policy: always
     restart: unless-stopped
     environment:
       POSTGRES_DB: "zulip"
@@ -9,11 +11,13 @@ services:
       # Note that you need to do a manual `ALTER ROLE` query if you
       # change this on a system after booting the postgres container
       # the first time on a host.  Instructions are available in README.md.
-      POSTGRES_PASSWORD: "REMOVED_3"
+      POSTGRES_PASSWORD: "${ZULIP_POSTGRESS_PASS:?ZULIP_POSTGRESS_PASS}"
     volumes:
       - "postgresql-14:/var/lib/postgresql/data:rw"
   memcached:
-    image: "memcached:alpine"
+    container-name: zulip-memcached
+    image: "memcached:1-alpine"
+    pull-policy: always
     restart: unless-stopped
     command:
       - "sh"
@@ -26,17 +30,21 @@ services:
     environment:
       SASL_CONF_PATH: "/home/memcache/memcached.conf"
       MEMCACHED_SASL_PWDB: "/home/memcache/memcached-sasl-db"
-      MEMCACHED_PASSWORD: "REMOVED_4"
+      MEMCACHED_PASSWORD: "${ZULIP_MEMCACHED_PASS:?ZULIP_MEMCACHED_PASS}"
   rabbitmq:
+    container-name: zulip-rabbitmq
     image: "rabbitmq:3.7.7"
+    pull-policy: always
     restart: unless-stopped
     environment:
       RABBITMQ_DEFAULT_USER: "zulip"
-      RABBITMQ_DEFAULT_PASS: "REMOVED_2"
+      RABBITMQ_DEFAULT_PASS: "${ZULIP_RABBITMQ_PASS:?ZULIP_RABBITMQ_PASS}"
     volumes:
       - "rabbitmq:/var/lib/rabbitmq:rw"
   redis:
-    image: "redis:alpine"
+    container-name: zulip-redis
+    image: "redis:7-alpine"
+    pull-policy: always
     restart: unless-stopped
     command:
       - "sh"
@@ -45,11 +53,16 @@ services:
         echo "requirepass '$$REDIS_PASSWORD'" > /etc/redis.conf
         exec redis-server /etc/redis.conf
     environment:
-      REDIS_PASSWORD: "REMOVED_5"
+      REDIS_PASSWORD: "${ZULIP_REDIS_PASS:?ZULIP_REDIS_PASS}"
     volumes:
       - "redis:/data:rw"
   zulip:
-    image: "zulip/docker-zulip:8.2-0"
+    container-name: zulip-zulip
+    image: "zulip/docker-zulip"
+    build:
+      context: docker-zulip
+      dockerfile: Dockerfile
+    pull-policy: build
     restart: unless-stopped
     environment:
       DB_HOST: "database"
@@ -60,13 +73,11 @@ services:
       SETTING_RABBITMQ_HOST: "rabbitmq"
       SETTING_REDIS_HOST: "redis"
       SECRETS_email_password: "123456789"
-      # These should match RABBITMQ_DEFAULT_PASS, POSTGRES_PASSWORD,
-      # MEMCACHED_PASSWORD, and REDIS_PASSWORD above.
-      SECRETS_rabbitmq_password: "REMOVED_2"
-      SECRETS_postgres_password: "REMOVED_3"
-      SECRETS_memcached_password: "REMOVED_4"
-      SECRETS_redis_password: "REMOVED_5"
-      SECRETS_secret_key: "REMOVED_6"
+      SECRETS_rabbitmq_password: "${ZULIP_RABBITMQ_PASS:?ZULIP_RABBITMQ_PASS}"
+      SECRETS_postgres_password: "${ZULIP_POSTGRESS_PASS:?ZULIP_POSTGRESS_PASS}"
+      SECRETS_memcached_password: "${ZULIP_MEMCACHED_PASS:?ZULIP_MEMCACHED_PASS}"
+      SECRETS_redis_password: "${ZULIP_REDIS_PASS:?ZULIP_REDIS_PASS}"
+      SECRETS_secret_key: "${ZULIP_SECRET_KEY:?ZULIP_SECRET_KEY}"
       SETTING_EXTERNAL_HOST: "chat.bojidar-bg.dev"
       SETTING_ZULIP_ADMINISTRATOR: "bojidar.marinov.bg@gmail.com"
       SETTING_EMAIL_HOST: "" # e.g. smtp.example.com

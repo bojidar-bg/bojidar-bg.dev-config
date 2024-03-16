@@ -22,5 +22,6 @@ echo "Transfer files ..."
 borg create -v --stats                   \
     $REPOSITORY::'{now:%Y-%m-%d_%H:%M}'  \
     /var/lib/docker/volumes              \
+    /root/.env                           \
 
 echo "###### Backup ended: $(date) ######"
