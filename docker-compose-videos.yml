@@ -9,14 +9,9 @@ services:
 
 volumes:
   videos:
-    driver: rclone # docker plugin install rclone/docker-volume-rclone:arm64 args="-v" --alias rclone --grant-all-permissions
+    driver: rclone # mkdir /var/lib/docker-plugins/rclone/{config,cache} && ln -s /root/.config/rclone/rclone.conf /var/lib/docker-plugins/rclone/config && docker plugin install rclone/docker-volume-rclone:arm64 args="-v" --alias rclone --grant-all-permissions
     driver_opts:
-      type: sftp
-      host: uXXXXXX.your-storagebox.de
-      user: uXXXXXX
-      port: 23
-      key_file: /root/.ssh/id_rsa
-      known_hosts_file: /root/.ssh/known_hosts
-      shell_type: unix
-      md5sum_command: md5 -r
-      sha1sum_command: sha1 -r
+      remote: storagebox
+      # allow_other: 'true'
+      # vfs_cache_mode: full
+      # poll_interval: 0
