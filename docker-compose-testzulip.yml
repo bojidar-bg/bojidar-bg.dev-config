@@ -65,13 +65,13 @@ services:
     pull_policy: build
     restart: unless-stopped
     environment:
-      DB_HOST: "database"
+      DB_HOST: "TEST_database"
       DB_HOST_PORT: "5432"
       DB_USER: "zulip"
       SSL_CERTIFICATE_GENERATION: "self-signed"
-      SETTING_MEMCACHED_LOCATION: "memcached:11211"
-      SETTING_RABBITMQ_HOST: "rabbitmq"
-      SETTING_REDIS_HOST: "redis"
+      SETTING_MEMCACHED_LOCATION: "TEST_memcached:11211"
+      SETTING_RABBITMQ_HOST: "TEST_rabbitmq"
+      SETTING_REDIS_HOST: "TEST_redis"
       SECRETS_email_password: "123456789"
       SECRETS_rabbitmq_password: "${TESTZULIP_RABBITMQ_PASS:?TESTZULIP_RABBITMQ_PASS}"
       SECRETS_postgres_password: "${TESTZULIP_POSTGRESS_PASS:?TESTZULIP_POSTGRESS_PASS}"
