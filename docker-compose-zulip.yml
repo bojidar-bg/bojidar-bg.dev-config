@@ -89,7 +89,7 @@ services:
       ZULIP_AUTH_BACKENDS: "EmailAuthBackend"
       # Uncomment this when configuring the mobile push notifications service
       # SETTING_PUSH_NOTIFICATION_BOUNCER_URL: 'https://push.zulipchat.com'
-      VIRTUAL_HOST: "*.chat.bojidar-bg.dev"
+      VIRTUAL_HOST: "chat.bojidar-bg.dev,translation.chat.bojidar-bg.dev"
       LETSENCRYPT_HOST: "chat.bojidar-bg.dev,translation.chat.bojidar-bg.dev"
       DISABLE_HTTPS: true
       LOADBALANCER_IPS: 172.18.0.0/16
