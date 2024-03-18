@@ -63,6 +63,12 @@ services:
       context: docker-zulip
       dockerfile: Dockerfile
     pull_policy: build
+    # command:
+    #   - "sh"
+    #   - "-euc"
+    #   - |
+    #     crudini --set /etc/zulip/zulip.conf application_server uwsgi_processes "3"
+    #     exec /sbin/entrypoint.sh app:run
     restart: unless-stopped
     environment:
       DB_HOST: "database"
@@ -86,6 +92,7 @@ services:
       # It seems that the email server needs to use ssl or tls and can't be used without it
       SETTING_EMAIL_USE_SSL: "False"
       SETTING_EMAIL_USE_TLS: "True"
+      QUEUE_WORKERS_MULTIPROCESS: "True"
       ZULIP_AUTH_BACKENDS: "EmailAuthBackend"
       # Uncomment this when configuring the mobile push notifications service
       # SETTING_PUSH_NOTIFICATION_BOUNCER_URL: 'https://push.zulipchat.com'
