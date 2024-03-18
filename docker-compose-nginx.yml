@@ -28,6 +28,8 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./nginx-proxy/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl
+    environment:
+      - 'LOG_FORMAT=$host 0.0.0.0 - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "" "$upstream_addr"' # DISABLE_ACCESS_LOGS=true
 
   acme:
     image: nginxproxy/acme-companion
