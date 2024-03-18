@@ -2,5 +2,6 @@ version: "2"
 
 include:
   - docker-compose-nginx.yml
+  - docker-compose-testzulip.yml
   - docker-compose-zulip.yml
   - docker-compose-videos.yml

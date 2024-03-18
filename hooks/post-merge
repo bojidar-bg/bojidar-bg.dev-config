@@ -8,5 +8,7 @@ fi
 
 echo "Updating..."
 
+./gen-passwords.sh
+
 docker compose up -d
 
