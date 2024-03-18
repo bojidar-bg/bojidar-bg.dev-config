@@ -10,5 +10,5 @@ echo "Updating..."
 
 ./gen-passwords.sh
 
-docker compose up -d
+docker compose up -d --remove-orphans
 
