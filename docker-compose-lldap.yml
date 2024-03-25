@@ -1,9 +1,5 @@
 version: "2"
 
-volumes:
-  lldap_data:
-    driver: local
-
 services:
   lldap:
     container_name: lldap
@@ -20,7 +16,6 @@ services:
       VIRTUAL_HOST: "ldap.bojidar-bg.dev"
       VIRTUAL_PORT: "17170"
       LETSENCRYPT_HOST: "ldap.bojidar-bg.dev"
-
 
 volumes:
   lldap_data:
