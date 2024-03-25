@@ -7,3 +7,6 @@
 [ -z "$ZULIP_RABBITMQ_PASS" ] && echo "ZULIP_RABBITMQ_PASS="$(openssl rand -base64 15) >> .env
 [ -z "$ZULIP_REDIS_PASS" ] && echo "ZULIP_REDIS_PASS="$(openssl rand -base64 15) >> .env
 [ -z "$ZULIP_SECRET_KEY" ] && echo "ZULIP_SECRET_KEY="$(openssl rand -base64 15) >> .env
+
+[ -z "$LLDAP_JWT_SECRET" ] && echo "LLDAP_JWT_SECRET="$(openssl rand -base64 15) >> .env
+[ -z "$LLDAP_KEY_SEED" ] && echo "LLDAP_KEY_SEED="$(openssl rand -base64 15) >> .env

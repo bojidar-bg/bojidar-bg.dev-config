@@ -1,0 +1,26 @@
+version: "2"
+
+volumes:
+  lldap_data:
+    driver: local
+
+services:
+  lldap:
+    container_name: lldap
+    image: lldap/lldap:stable-alpine
+    volumes:
+      - "lldap_data:/data"
+    environment:
+      #- UID=####
+      #- GID=####
+      #- TZ=####/####
+      LLDAP_JWT_SECRET: "${LLDAP_JWT_SECRET:?LLDAP_JWT_SECRET}"
+      LLDAP_KEY_SEED: "${LLDAP_KEY_SEED:?LLDAP_KEY_SEED}"
+      LLDAP_LDAP_BASE_DN: "dc=bojidar-bg,dc=dev"
+      VIRTUAL_HOST: "ldap.bojidar-bg.dev"
+      VIRTUAL_PORT: "17170"
+      LETSENCRYPT_HOST: "ldap.bojidar-bg.dev"
+
+
+volumes:
+  lldap_data:
