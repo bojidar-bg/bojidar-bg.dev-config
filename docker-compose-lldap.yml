@@ -13,9 +13,9 @@ services:
       LLDAP_JWT_SECRET: "${LLDAP_JWT_SECRET:?LLDAP_JWT_SECRET}"
       LLDAP_KEY_SEED: "${LLDAP_KEY_SEED:?LLDAP_KEY_SEED}"
       LLDAP_LDAP_BASE_DN: "dc=bojidar-bg,dc=dev"
-      VIRTUAL_HOST: "ldap.bojidar-bg.dev"
+      VIRTUAL_HOST: "auth.bojidar-bg.dev"
       VIRTUAL_PORT: "17170"
-      LETSENCRYPT_HOST: "ldap.bojidar-bg.dev"
+      LETSENCRYPT_HOST: "auth.bojidar-bg.dev"
 
 volumes:
   lldap_data:
