@@ -102,7 +102,7 @@ services:
       SETTING_LDAP_EMAIL_ATTR: "mail"
       SETTING_AUTH_LDAP_REVERSE_EMAIL_SEARCH: >
         LDAPSearch("ou=people,dc=bojidar-bg,dc=dev", ldap.SCOPE_SUBTREE, "(mail=%(email)s)")
-      SECRETS_auth_ldap_bind_password: "${$ZULIP_LLDAP_PASSWORD:?$ZULIP_LLDAP_PASSWORD}"
+      SECRETS_auth_ldap_bind_password: "${ZULIP_LLDAP_PASSWORD:?ZULIP_LLDAP_PASSWORD}"
       
       SETTING_EMAIL_BACKEND: 'django.core.mail.backends.filebased.EmailBackend'
       SETTING_EMAIL_FILE_PATH: '/var/log/zulip/emails'
