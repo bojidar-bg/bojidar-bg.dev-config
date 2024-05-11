@@ -64,7 +64,7 @@ services:
       dockerfile: Dockerfile
       args:
         ZULIP_GIT_URL: https://github.com/zulip/zulip.git
-        ZULIP_GIT_REF: "8.3"
+        ZULIP_GIT_REF: "8.4"
 
     pull_policy: build
     # command:
