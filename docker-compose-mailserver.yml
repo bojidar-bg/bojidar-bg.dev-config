@@ -141,10 +141,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - type: volume
         source: certs
-        target: /etc/letsencrypt/live/mail.bojidar-bg.com
+        target: /etc/letsencrypt/live/mail.bojidar-bg.dev
         read_only: true
         volume:
-          subpath: mail.bojidar-bg.com
+          subpath: mail.bojidar-bg.dev
     restart: always
     stop_grace_period: 1m
     # Uncomment if using `ENABLE_FAIL2BAN=1`:
