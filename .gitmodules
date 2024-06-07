@@ -13,3 +13,9 @@
 [submodule "nginx-proxy"]
 	path = nginx-proxy
 	url = https://github.com/nginx-proxy/nginx-proxy
+[submodule "p5.js-web-editor"]
+	path = p5.js-web-editor
+	url = https://github.com/processing/p5.js-web-editor.git
+[submodule "docker-mailserver"]
+	path = docker-mailserver
+	url = https://github.com/docker-mailserver/docker-mailserver.git

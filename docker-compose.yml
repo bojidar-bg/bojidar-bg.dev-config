@@ -5,3 +5,4 @@ include:
   - docker-compose-nginx.yml
   - docker-compose-zulip.yml
   - docker-compose-videos.yml
+  - docker-compose-mailserver.yml
