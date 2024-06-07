@@ -67,12 +67,12 @@ services:
         ZULIP_GIT_REF: "8.4"
 
     pull_policy: build
-    # command:
-    #   - "sh"
-    #   - "-euc"
-    #   - |
-    #     crudini --set /etc/zulip/zulip.conf application_server uwsgi_processes "3"
-    #     exec /sbin/entrypoint.sh app:run
+    command:
+      - "sh"
+      - "-euc"
+      - |
+        crudini --set /etc/zulip/zulip.conf application_server uwsgi_processes "3"
+        exec /sbin/entrypoint.sh app:run
     restart: unless-stopped
     environment:
       ZULIP_AUTH_BACKENDS: "ZulipLDAPAuthBackend,EmailAuthBackend"
