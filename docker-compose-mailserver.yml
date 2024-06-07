@@ -128,7 +128,7 @@ services:
       VIRTUAL_HOST: mail.bojidar-bg.dev
       LETSENCRYPT_HOST: mail.bojidar-bg.dev
     ports: # https://docker-mailserver.github.io/docker-mailserver/latest/config/security/understanding-the-ports/
-      #- "25:25"    # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
+      - "25:25"    # SMTP  (explicit TLS => STARTTLS, Authentication is DISABLED => use port 465/587 instead)
       - "143:143"  # IMAP4 (explicit TLS => STARTTLS)
       - "465:465"  # ESMTP (implicit TLS)
       - "587:587"  # ESMTP (explicit TLS => STARTTLS)
