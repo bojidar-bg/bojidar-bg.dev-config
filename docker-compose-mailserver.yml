@@ -2,7 +2,7 @@ services:
   mailserver:
     container_name: mailserver
     image: mailserver/docker-mailserver:14.0.0
-    hostname: mail.bojidar-bg.com ## <- MX
+    hostname: mail.bojidar-bg.dev ## <- MX
     env_file: docker-mailserver/mailserver.env
     environment:
       #OVERRIDE_HOSTNAME:
