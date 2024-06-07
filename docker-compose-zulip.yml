@@ -78,7 +78,7 @@ services:
       ZULIP_AUTH_BACKENDS: "ZulipLDAPAuthBackend,EmailAuthBackend"
       SETTING_ZULIP_ADMINISTRATOR: "bojidar.marinov.bg@gmail.com"
       SECRETS_secret_key: "${ZULIP_SECRET_KEY:?ZULIP_SECRET_KEY}"
-      QUEUE_WORKERS_MULTIPROCESS: "True"
+      QUEUE_WORKERS_MULTIPROCESS: "False"
       
       DB_HOST: "database"
       DB_HOST_PORT: "5432"
