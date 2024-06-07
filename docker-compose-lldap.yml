@@ -1,5 +1,3 @@
-version: "2"
-
 services:
   lldap:
     container_name: lldap
