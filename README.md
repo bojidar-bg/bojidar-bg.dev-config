@@ -12,6 +12,18 @@ The server is a Hetzner CAX11 instance running Arm64 Debian. It's `/root/` folde
 
 Both repositories on the server have the Git hooks from `hooks/` installed; with these, pushing a commit would result in a pull of the `/root/` repo, and from there, a run of the `./gen-passwords.sh` script and an update of docker compose configuration.
 
+The hooks are installed by:
+```bash
+cd .git/hooks/
+ln -s ../../hooks/* .
+```
+
+As such, after committing a change, deployment is as easy as:
+```bash
+# git remote add deploy ssh://USER@bojidar-bg.dev/var/local/gitrepo
+git push deploy
+```
+
 ### Secrets management
 
 The `./gen-passwords.sh` script is in charge of generating new secrets whenever they are neccessary. They are stored in `.env`, and this makes `.env` one of the two important files to keep private—the other being `/root/.ssh/id_rsa`, the server's SSH key.
