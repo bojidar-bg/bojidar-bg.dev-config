@@ -78,21 +78,21 @@ services:
       SETTING_ZULIP_ADMINISTRATOR: "bojidar.marinov.bg@gmail.com"
       SECRETS_secret_key: "${ZULIP_SECRET_KEY:?ZULIP_SECRET_KEY}"
       QUEUE_WORKERS_MULTIPROCESS: "False"
-      
+
       DB_HOST: "database"
       DB_HOST_PORT: "5432"
       DB_USER: "zulip"
       SECRETS_postgres_password: "${ZULIP_POSTGRESS_PASS:?ZULIP_POSTGRESS_PASS}"
-      
+
       SETTING_MEMCACHED_LOCATION: "memcached:11211"
       SECRETS_memcached_password: "${ZULIP_MEMCACHED_PASS:?ZULIP_MEMCACHED_PASS}"
-      
+
       SETTING_RABBITMQ_HOST: "rabbitmq"
       SECRETS_rabbitmq_password: "${ZULIP_RABBITMQ_PASS:?ZULIP_RABBITMQ_PASS}"
-      
+
       SETTING_REDIS_HOST: "redis"
       SECRETS_redis_password: "${ZULIP_REDIS_PASS:?ZULIP_REDIS_PASS}"
-      
+
       SETTING_AUTH_LDAP_SERVER_URI: "ldap://lldap:3890"
       SETTING_AUTH_LDAP_BIND_DN: "uid=zulip,ou=people,dc=bojidar-bg,dc=dev"
       SETTING_AUTH_LDAP_USERNAME_ATTR: "uid"
@@ -102,7 +102,7 @@ services:
       SETTING_AUTH_LDAP_REVERSE_EMAIL_SEARCH: >
         LDAPSearch("ou=people,dc=bojidar-bg,dc=dev", ldap.SCOPE_SUBTREE, "(mail=%(email)s)")
       SECRETS_auth_ldap_bind_password: "${ZULIP_LLDAP_PASSWORD:?ZULIP_LLDAP_PASSWORD}"
-      
+
       SETTING_EMAIL_BACKEND: 'django.core.mail.backends.filebased.EmailBackend'
       SETTING_EMAIL_FILE_PATH: '/var/log/zulip/emails'
       SETTING_EMAIL_HOST: "" # e.g. smtp.example.com
@@ -114,7 +114,7 @@ services:
       SETTING_EMAIL_USE_TLS: "True"
       # Uncomment this when configuring the mobile push notifications service
       # SETTING_PUSH_NOTIFICATION_BOUNCER_URL: 'https://push.zulipchat.com'
-      
+
       SSL_CERTIFICATE_GENERATION: "self-signed"
       DISABLE_HTTPS: true
       SETTING_EXTERNAL_HOST: "chat.bojidar-bg.dev"

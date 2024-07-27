@@ -3,3 +3,5 @@
 !/.bashrc
 !/.profile
 !/.selected_editor
+!/.editorconfig
+/.gitconfig
