@@ -11,3 +11,8 @@
 
 [ -z "$LLDAP_JWT_SECRET" ] && echo "LLDAP_JWT_SECRET="$(openssl rand -base64 15) >> .env
 [ -z "$LLDAP_KEY_SEED" ] && echo "LLDAP_KEY_SEED="$(openssl rand -base64 15) >> .env
+
+[ -z "$VIDEOS_OLD_PASSWORD" ] && echo "VIDEOS_OLD_PASSWORD="$(openssl rand -base64 15) >> .env
+
+[ -z "$BORG_PASSPHRASE" ] && echo "BORG_PASSPHRASE="$(openssl rand -base64 15) >> .env
+[ -z "$STORAGEBOX_USER" ] && echo "WARNING, missing STORAGEBOX_USER in .env"

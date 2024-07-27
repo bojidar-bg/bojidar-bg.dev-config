@@ -1,17 +1,33 @@
 services:
+
+  passwdgen:
+    image: nginxproxy/docker-gen # we just need a container with openssl in it
+    pull_policy: never
+    entrypoint: ash -c 'echo "viewer:$$(openssl passwd -apr1 $$PASS)" > $$FILENAME'
+    volumes:
+      - videos-passwd:/run/output/:rw
+    environment:
+      PASS: "${VIDEOS_OLD_PASSWORD:?VIDEOS_OLD_PASSWORD}"
+      FILENAME: "/run/output/recordings.htpasswd"
+    restart: no
+
   nginx-videos:
     image: nginx:1.25-alpine
     container_name: nginx-videos
     volumes:
       - ./videos-nginx-conf-default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./videos-nginx.htpasswd:/etc/nginx/recordings.htpasswd:ro
+      - videos-passwd:/etc/nginx/passwd:ro
       - videos:/opt/videos:ro
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: "videos.bojidar-bg.dev"
       LETSENCRYPT_HOST: "videos.bojidar-bg.dev"
+    depends_on:
+      passwdgen:
+        condition: service_completed_successfully
 
 volumes:
+  videos-passwd:
   videos:
     driver: rclone # mkdir /var/lib/docker-plugins/rclone/{config,cache} && cp /root/.config/rclone/rclone.conf /var/lib/docker-plugins/rclone/config && docker plugin install rclone/docker-volume-rclone:arm64 args="-v" --alias rclone --grant-all-permissions
     driver_opts:
