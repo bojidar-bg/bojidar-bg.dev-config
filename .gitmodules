@@ -19,3 +19,6 @@
 [submodule "docker-mailserver"]
 	path = docker-mailserver
 	url = https://github.com/docker-mailserver/docker-mailserver.git
+[submodule "docker-jitsi-meet"]
+	path = docker-jitsi-meet
+	url = ./docker-jitsi-meet/

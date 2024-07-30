@@ -12,6 +12,13 @@
 [ -z "$LLDAP_JWT_SECRET" ] && echo "LLDAP_JWT_SECRET="$(openssl rand -base64 15) >> .env
 [ -z "$LLDAP_KEY_SEED" ] && echo "LLDAP_KEY_SEED="$(openssl rand -base64 15) >> .env
 
+[ -z "$JITSI_JICOFO_PASS" ] && echo "JITSI_JICOFO_PASS="$(openssl rand -base64 15) >> .env
+[ -z "$JITSI_JVB_PASS" ] && echo "JITSI_JVB_PASS="$(openssl rand -base64 15) >> .env
+[ -z "$JITSI_JIGASI_PASS" ] && echo "JITSI_JIGASI_PASS="$(openssl rand -base64 15) >> .env
+[ -z "$JITSI_RECORDER_PASS" ] && echo "JITSI_RECORDER_PASS="$(openssl rand -base64 15) >> .env
+[ -z "$JITSI_JIBRI_PASS" ] && echo "JITSI_JIBRI_PASS="$(openssl rand -base64 15) >> .env
+[ -z "$JITSI_LDAP_PASSWORD" ] && echo "JITSI_LDAP_PASSWORD="$(openssl rand -base64 15) >> .env
+
 [ -z "$VIDEOS_OLD_PASSWORD" ] && echo "VIDEOS_OLD_PASSWORD="$(openssl rand -base64 15) >> .env
 
 [ -z "$BORG_PASSPHRASE" ] && echo "BORG_PASSPHRASE="$(openssl rand -base64 15) >> .env
