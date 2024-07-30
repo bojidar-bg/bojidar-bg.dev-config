@@ -11,6 +11,7 @@
 
 [ -z "$LLDAP_JWT_SECRET" ] && echo "LLDAP_JWT_SECRET="$(openssl rand -base64 15) >> .env
 [ -z "$LLDAP_KEY_SEED" ] && echo "LLDAP_KEY_SEED="$(openssl rand -base64 15) >> .env
+[ -z "$LLDAP_SMTP_PASSWORD" ] && echo "LLDAP_SMTP_PASSWORD="$(openssl rand -base64 15) >> .env
 
 [ -z "$JITSI_JICOFO_PASS" ] && echo "JITSI_JICOFO_PASS="$(openssl rand -base64 15) >> .env
 [ -z "$JITSI_JVB_PASS" ] && echo "JITSI_JVB_PASS="$(openssl rand -base64 15) >> .env

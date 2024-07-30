@@ -4,6 +4,15 @@ services:
     image: mailserver/docker-mailserver:14.0.0
     hostname: mail.bojidar-bg.dev ## <- MX
     env_file: docker-mailserver/mailserver.env
+    command:
+      - "sh"
+      - "-euc"
+      - |
+        SAU() {
+          setup email add $@ || setup email update $@
+        }
+        SAU lldap@bojidar-bg.dev ${LLDAP_SMTP_PASSWORD:?LLDAP_SMTP_PASSWORD}
+        supervisord -c /etc/supervisor/supervisord.conf
     environment:
       #OVERRIDE_HOSTNAME:
       LOG_LEVEL: info
