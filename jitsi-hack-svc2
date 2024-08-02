@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+
+# https://github.com/jitsi/docker-jitsi-meet/issues/173#issuecomment-607587622
+
+sed -E -i 's/local node = s_match\(user, "\^\(\[\^@\]\+\)"\);/local node = s_gsub(user, "%.at%.", "@");/;/local pcall = pcall/a local s_gsub = string.gsub' /prosody-plugins/sasl_cyrus.lua
+sed -i 's/session.sasl_handler.username/string.gsub(session.sasl_handler.username, "@", ".at.")/' /usr/lib/prosody/modules/mod_saslauth.lua

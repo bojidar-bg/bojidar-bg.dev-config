@@ -19,6 +19,7 @@ services:
       volume:
         subpath: transcripts
       type: volume
+    - ./jitsi-hack-svc1:/etc/cont-init.d/50-jitsi-hack-svc:ro
     environment:
       # AMPLITUDE_ID:
       # ANALYTICS_SCRIPT_URLS:
@@ -189,9 +190,11 @@ services:
     image: jitsi/prosody:stable-9584-1
     restart: unless-stopped
     volumes:
-    - jitsi-prosody-config:/config:Z
+    - jitsi-prosody-config:/config
+    - ./jitsi-hack-svc2:/etc/cont-init.d/50-jitsi-hack-svc:ro
     # - jitsi-prosody-custom-plugins:/prosody-plugins-custom:Z
     environment:
+      xX: true
       AUTH_TYPE: ldap
       # DISABLE_POLLS:
       ENABLE_AUTH: 1
@@ -253,7 +256,7 @@ services:
       LDAP_BINDDN: "uid=jitsi,ou=people,dc=bojidar-bg,dc=dev"
       LDAP_BINDPW: "${JITSI_LDAP_PASSWORD:?JITSI_LDAP_PASSWORD}"
       LDAP_BASE: ou=people,dc=bojidar-bg,dc=dev
-      LDAP_FILTER: (&(uid=%u)(objectClass=person))
+      LDAP_FILTER: (&(|(uid=%u)(uid=%u@%r))(objectClass=person))
       # MAX_PARTICIPANTS:
       # PROSODY_ADMINS:
       # PROSODY_AUTH_TYPE:
@@ -317,7 +320,7 @@ services:
     ports:
     - '127.0.0.1:${JICOFO_REST_PORT:-8888}:8888'
     volumes:
-    - jicofo-config:/config:Z
+    - jicofo-config:/config
     environment:
       AUTH_TYPE: ldap
       # BRIDGE_AVG_PARTICIPANT_STRESS:
@@ -399,7 +402,7 @@ services:
     - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
     - '127.0.0.1:${JVB_COLIBRI_PORT:-8080}:8080'
     volumes:
-    - jitsi-jvb-config:/config:Z
+    - jitsi-jvb-config:/config
     environment:
       # AUTOSCALER_SIDECAR_KEY_FILE:
       # AUTOSCALER_SIDECAR_KEY_ID:

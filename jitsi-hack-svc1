@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+# https://github.com/jitsi/docker-jitsi-meet/issues/173#issuecomment-607587622
+
+sed -i 's/return e.indexOf(\"@\")>=0?e:`${e/return\`${e.split(\"@\").join(\".at.\")/' /usr/share/jitsi-meet/libs/app.bundle.min.js
