@@ -194,7 +194,6 @@ services:
     - ./jitsi-hack-svc2:/etc/cont-init.d/50-jitsi-hack-svc:ro
     # - jitsi-prosody-custom-plugins:/prosody-plugins-custom:Z
     environment:
-      xX: true
       AUTH_TYPE: ldap
       # DISABLE_POLLS:
       ENABLE_AUTH: 1
@@ -465,7 +464,7 @@ services:
     cap_add:
     - SYS_ADMIN
     environment:
-        # AUTOSCALER_SIDECAR_KEY_FILE:
+      # AUTOSCALER_SIDECAR_KEY_FILE:
       # AUTOSCALER_SIDECAR_KEY_ID:
       # AUTOSCALER_SIDECAR_GROUP_NAME:
       # AUTOSCALER_SIDECAR_HOST_ID:
@@ -499,7 +498,7 @@ services:
       # JIBRI_RECORDER_USER:
       JIBRI_RECORDER_PASSWORD: ${JITSI_RECORDER_PASS:?JITSI_RECORDER_PASS}
       JIBRI_RECORDING_DIR: /recordings
-      JIBRI_FINALIZE_RECORDING_SCRIPT_PATH:
+      JIBRI_FINALIZE_RECORDING_SCRIPT_PATH: /usr/bin/true
       # JIBRI_STRIP_DOMAIN_JID:
       # JIBRI_STATSD_HOST:
       # JIBRI_STATSD_PORT:
@@ -540,5 +539,5 @@ volumes:
       gid: 101
       uid: 101
       allow_other: 'true'
-      # vfs_cache_mode: full
+      vfs_cache_mode: writes
       # poll_interval: 0
