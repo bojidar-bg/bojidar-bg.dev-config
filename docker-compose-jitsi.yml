@@ -455,7 +455,7 @@ services:
     - jitsi-prosody
 
   jitsi-jibri:
-    image: jitsi/jibri:stable-9584-1
+    image: jitsi/jibri:unstable-2024-08-14
     restart: unless-stopped
     volumes:
     - jibri-config:/config:Z
