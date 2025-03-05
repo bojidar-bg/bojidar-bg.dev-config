@@ -1,24 +1,24 @@
 [submodule "acme-companion"]
 	path = acme-companion
-	url = https://github.com/nginx-proxy/acme-companion
+	url = https://github.com/nginx-proxy/acme-companion.git
 [submodule "acme.sh"]
 	path = acme.sh
-	url = https://github.com/acmesh-official/acme.sh
+	url = https://github.com/acmesh-official/acme.sh.git
 [submodule "docker-gen"]
 	path = docker-gen
-	url = https://github.com/nginx-proxy/docker-gen
+	url = https://github.com/nginx-proxy/docker-gen.git
 [submodule "docker-zulip"]
 	path = docker-zulip
-	url = https://github.com/zulip/docker-zulip.git
+	url = https://github.com/bojidar-bg/docker-zulip.git
 [submodule "nginx-proxy"]
 	path = nginx-proxy
-	url = https://github.com/nginx-proxy/nginx-proxy
+	url = https://github.com/nginx-proxy/nginx-proxy.git
 [submodule "p5.js-web-editor"]
 	path = p5.js-web-editor
-	url = ./p5.js-web-editor/
+	url = https://github.com/bojidar-bg/p5.js-web-editor.git
 [submodule "docker-mailserver"]
 	path = docker-mailserver
 	url = https://github.com/docker-mailserver/docker-mailserver.git
 [submodule "docker-jitsi-meet"]
 	path = docker-jitsi-meet
-	url = ./docker-jitsi-meet/
+	url = https://github.com/jitsi/docker-jitsi-meet.git
