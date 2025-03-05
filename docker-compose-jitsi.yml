@@ -1,7 +1,7 @@
 services:
   # Frontend
   jitsi-web:
-    image: jitsi/web:stable-9584-1
+    image: jitsi/web:stable-10078-1
     restart: unless-stopped
     volumes:
     - target: /config
@@ -187,7 +187,7 @@ services:
   # XMPP server
   jitsi-prosody:
     container_name: jitsi-xmpp
-    image: jitsi/prosody:stable-9584-1
+    image: jitsi/prosody:stable-10078-1
     restart: unless-stopped
     volumes:
     - jitsi-prosody-config:/config
@@ -314,7 +314,7 @@ services:
 
   # Focus component
   jitsi-jicofo:
-    image: jitsi/jicofo:stable-9584-1
+    image: jitsi/jicofo:stable-10078-1
     restart: unless-stopped
     ports:
     - '127.0.0.1:${JICOFO_REST_PORT:-8888}:8888'
@@ -395,7 +395,7 @@ services:
 
   # Video bridge
   jitsi-jvb:
-    image: jitsi/jvb:stable-9584-1
+    image: jitsi/jvb:stable-10078-1
     restart: unless-stopped
     ports:
     - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'

@@ -1,7 +1,7 @@
 services:
   lldap:
     container_name: lldap
-    image: lldap/lldap:2024-07-20-alpine
+    image: lldap/lldap:stable-alpine
     volumes:
       - "lldap_data:/data"
     environment:

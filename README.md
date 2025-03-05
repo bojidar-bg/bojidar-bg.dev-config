@@ -8,7 +8,7 @@ Most of the software deployed there has to do with the [small programming course
 
 ### Git repositories
 
-The server is a Hetzner CAX11 instance running Arm64 Debian. It's `/root/` folder is this Git repository. In addition, the `/var/local/gitrepo` folder holds a bare Git repository, allowing me to push to the server using Git directly.
+The server is a Hetzner CAX21 instance running Arm64 Debian. It's `/root/` folder is this Git repository. In addition, the `/var/local/gitrepo` folder holds a bare Git repository, allowing me to push to the server using Git directly.
 
 Both repositories on the server have the Git hooks from `hooks/` installed; with these, pushing a commit would result in a pull of the `/root/` repo, and from there, a run of the `./gen-passwords.sh` script and an update of docker compose configuration.
 
