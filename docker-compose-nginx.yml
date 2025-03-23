@@ -1,7 +1,7 @@
 services:
   nginx:
     container_name: nginx
-    image: nginx:1.27-alpine
+    image: nginx:${NGINX_VERSION:?NGINX_VERSION}
     ports:
       - "80:80"
       - "443:443"

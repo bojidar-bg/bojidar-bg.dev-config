@@ -1,7 +1,7 @@
 services:
   # Frontend
   jitsi-web:
-    image: jitsi/web:stable-10078-1
+    image: jitsi/web:${JITSI_VERSION:?$JITSI_VERSION}
     restart: unless-stopped
     volumes:
     - target: /config
@@ -187,7 +187,7 @@ services:
   # XMPP server
   jitsi-prosody:
     container_name: jitsi-xmpp
-    image: jitsi/prosody:stable-10078-1
+    image: jitsi/prosody:${JITSI_VERSION:?$JITSI_VERSION}
     restart: unless-stopped
     volumes:
     - jitsi-prosody-config:/config
@@ -314,7 +314,7 @@ services:
 
   # Focus component
   jitsi-jicofo:
-    image: jitsi/jicofo:stable-10078-1
+    image: jitsi/jicofo:${JITSI_VERSION:?JITSI_VERSION}
     restart: unless-stopped
     ports:
     - '127.0.0.1:${JICOFO_REST_PORT:-8888}:8888'
@@ -395,7 +395,7 @@ services:
 
   # Video bridge
   jitsi-jvb:
-    image: jitsi/jvb:stable-10078-1
+    image: jitsi/jvb:${JITSI_VERSION:?JITSI_VERSION}
     restart: unless-stopped
     ports:
     - '${JVB_PORT:-10000}:${JVB_PORT:-10000}/udp'
@@ -455,7 +455,7 @@ services:
     - jitsi-prosody
 
   jitsi-jibri:
-    image: jitsi/jibri:unstable-2024-08-14
+    image: jitsi/jibri:${JITSI_VERSION:?JITSI_VERSION}
     restart: unless-stopped
     volumes:
     - jibri-config:/config:Z
@@ -518,7 +518,7 @@ services:
 
   jitsi-whiteboard:
     container_name: jitsi-whiteboard
-    image: jitsi/excalidraw-backend:21
+    image: jitsi/excalidraw-backend:${JITSI_EXCALIDRAW_BACKEND_VERSION:?JITSI_EXCALIDRAW_BACKEND_VERSION}
     restart: unless-stopped
     environment:
       VIRTUAL_HOST: "jitsi-wb.bojidar-bg.dev"

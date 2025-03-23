@@ -2,7 +2,7 @@ services:
 
   passwdgen:
     image: nginxproxy/docker-gen # we just need a container with openssl in it
-    pull_policy: never
+    pull_policy: never # Already built in docker-compose-nginx.yml
     entrypoint: ash -c 'echo "viewer:$$(openssl passwd -apr1 $$PASS)" > $$FILENAME'
     volumes:
       - videos-passwd:/run/output/:rw
@@ -12,7 +12,7 @@ services:
     restart: no
 
   nginx-videos:
-    image: nginx:1.27-alpine
+    image: nginx:${NGINX_VERSION:?NGINX_VERSION}
     container_name: nginx-videos
     volumes:
       - ./videos-nginx-conf-default.conf:/etc/nginx/conf.d/default.conf:ro

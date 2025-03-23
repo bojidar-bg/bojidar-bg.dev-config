@@ -1,7 +1,7 @@
 services:
   database:
     container_name: zulip-postgres
-    image: "zulip/zulip-postgresql:14"
+    image: zulip/zulip-postgresql:${ZULIP_POSTGRE_VERSION:?ZULIP_POSTGRE_VERSION}
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -12,10 +12,10 @@ services:
       # the first time on a host.  Instructions are available in README.md.
       POSTGRES_PASSWORD: "${ZULIP_POSTGRESS_PASS:?ZULIP_POSTGRESS_PASS}"
     volumes:
-      - "postgresql-14:/var/lib/postgresql/data:rw"
+      - "postgresql-${ZULIP_POSTGRE_VERSION:?ZULIP_POSTGRE_VERSION}:/var/lib/postgresql/data:rw"
   memcached:
     container_name: zulip-memcached
-    image: "memcached:1-alpine"
+    image: memcached:${ZULIP_MEMCACHED_VERSION:?ZULIP_MEMCACHED_VERSION}"
     pull_policy: always
     restart: unless-stopped
     command:
@@ -32,7 +32,7 @@ services:
       MEMCACHED_PASSWORD: "${ZULIP_MEMCACHED_PASS:?ZULIP_MEMCACHED_PASS}"
   rabbitmq:
     container_name: zulip-rabbitmq
-    image: "rabbitmq:3.7.7"
+    image: "rabbitmq:${ZULIP_RABBITMQ_VERSION:?ZULIP_RABBITMQ_VERSION}"
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -42,7 +42,7 @@ services:
       - "rabbitmq:/var/lib/rabbitmq:rw"
   redis:
     container_name: zulip-redis
-    image: "redis:7.2.4-alpine"
+    image: "redis:${ZULIP_REDIS_VERSION:?ZULIP_REDIS_VERSION}"
     pull_policy: always
     restart: unless-stopped
     command:
@@ -61,9 +61,6 @@ services:
     build:
       context: docker-zulip
       dockerfile: Dockerfile
-      args:
-        ZULIP_GIT_URL: https://github.com/zulip/zulip.git
-        ZULIP_GIT_REF: "9.4"
 
     pull_policy: build
     command:

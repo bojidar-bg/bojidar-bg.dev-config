@@ -1,7 +1,7 @@
 services:
   mailserver:
     container_name: mailserver
-    image: mailserver/docker-mailserver:15.0.0
+    image: mailserver/docker-mailserver:${DOCKER_MAILSERVER_VERSION:?DOCKER_MAILSERVER_VERSION}
     hostname: mail.bojidar-bg.dev ## <- MX
     env_file: docker-mailserver/mailserver.env
     command:
