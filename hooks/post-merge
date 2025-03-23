@@ -12,5 +12,5 @@ git submodule update --init --recursive
 
 ./gen-passwords.sh
 
-docker compose up -d --remove-orphans --env-file ./config.env
+docker compose --env-file ./config.env up -d --remove-orphans
 

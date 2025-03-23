@@ -15,7 +15,7 @@ services:
       - "postgresql-${ZULIP_POSTGRE_VERSION:?ZULIP_POSTGRE_VERSION}:/var/lib/postgresql/data:rw"
   memcached:
     container_name: zulip-memcached
-    image: memcached:${ZULIP_MEMCACHED_VERSION:?ZULIP_MEMCACHED_VERSION}"
+    image: memcached:${ZULIP_MEMCACHED_VERSION:?ZULIP_MEMCACHED_VERSION}
     pull_policy: always
     restart: unless-stopped
     command:
@@ -32,7 +32,7 @@ services:
       MEMCACHED_PASSWORD: "${ZULIP_MEMCACHED_PASS:?ZULIP_MEMCACHED_PASS}"
   rabbitmq:
     container_name: zulip-rabbitmq
-    image: "rabbitmq:${ZULIP_RABBITMQ_VERSION:?ZULIP_RABBITMQ_VERSION}"
+    image: rabbitmq:${ZULIP_RABBITMQ_VERSION:?ZULIP_RABBITMQ_VERSION}
     pull_policy: always
     restart: unless-stopped
     environment:
@@ -42,7 +42,7 @@ services:
       - "rabbitmq:/var/lib/rabbitmq:rw"
   redis:
     container_name: zulip-redis
-    image: "redis:${ZULIP_REDIS_VERSION:?ZULIP_REDIS_VERSION}"
+    image: redis:${ZULIP_REDIS_VERSION:?ZULIP_REDIS_VERSION}
     pull_policy: always
     restart: unless-stopped
     command:
@@ -57,7 +57,7 @@ services:
       - "redis:/data:rw"
   zulip:
     container_name: zulip-zulip
-    image: "zulip/docker-zulip"
+    image: zulip/docker-zulip
     build:
       context: docker-zulip
       dockerfile: Dockerfile
