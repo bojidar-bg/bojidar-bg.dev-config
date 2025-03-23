@@ -3,6 +3,7 @@ services:
     container_name: mailserver
     image: mailserver/docker-mailserver:${DOCKER_MAILSERVER_VERSION:?DOCKER_MAILSERVER_VERSION}
     pull_policy: always
+    restart: unless-stopped
     hostname: mail.bojidar-bg.dev ## <- MX
     env_file: docker-mailserver/mailserver.env
     command:
@@ -155,7 +156,6 @@ services:
         read_only: true
         volume:
           subpath: mail.bojidar-bg.dev
-    restart: always
     stop_grace_period: 1m
     # Uncomment if using `ENABLE_FAIL2BAN=1`:
     # cap_add:

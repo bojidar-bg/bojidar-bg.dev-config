@@ -3,6 +3,7 @@ services:
     container_name: lldap
     image: lldap/lldap:${LLDAP_VERSION:?LLDAP_VERSION}
     pull_policy: always
+    restart: unless-stopped
     volumes:
       - "lldap_data:/data"
     environment:

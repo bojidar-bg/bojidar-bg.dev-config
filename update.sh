@@ -7,6 +7,10 @@ for i in "$@"; do
     --dry-run)
       DRY_RUN=true
       ;;
+    --warn-only)
+      WARN_ONLY=true
+      DRY_RUN=true
+      ;;
     -*|--*)
       echo "Unknown option $i"
       exit 1
@@ -82,11 +86,26 @@ generate-config-env() {
   echo -n 'JITSI_EXCALIDRAW_BACKEND_VERSION='
   get_image_tags jitsi/excalidraw-backend | sort -t. -k1,1 -k2,2 -k3,3 -n -r | head -n 1
 
-  yq -r '.services | select(. != null) | to_entries | .[] | select(.value.pull_policy == null) | "# Missing pull_policy!: " + .key' *.yml
 }
 
-if [ -z $DRY_RUN ];
-  generate-config-env | tee config.env
-else
-  generate-config-env
+generate-warnings() {
+  COMMAND='
+  .services | select(. != null) |
+    to_entries | .[] |
+      (select(.value.pull_policy == null) | "[WARN] \(filename): services.\(.key) has no pull_policy! "),
+      (select(.value.restart == null) | "[WARN] \(filename): services.\(.key) has no restart!")
+  '
+  for yml in *.yml; do
+    yq -r "def filename: \"$yml\"; $COMMAND" $yml 1>&2
+  done
+}
+
+generate-warnings
+
+if [ -z $WARN_ONLY ]; then
+  if [ -z $DRY_RUN ]; then
+    generate-config-env | tee config.env
+  else
+    generate-config-env
+  fi
 fi

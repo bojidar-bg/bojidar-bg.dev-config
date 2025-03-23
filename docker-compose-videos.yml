@@ -3,13 +3,13 @@ services:
   passwdgen:
     image: nginxproxy/docker-gen # we just need a container with openssl in it
     pull_policy: never # Already built in docker-compose-nginx.yml
+    restart: "no"
     entrypoint: ash -c 'echo "viewer:$$(openssl passwd -apr1 $$PASS)" > $$FILENAME'
     volumes:
       - videos-passwd:/run/output/:rw
     environment:
       PASS: "${VIDEOS_OLD_PASSWORD:?VIDEOS_OLD_PASSWORD}"
       FILENAME: "/run/output/recordings.htpasswd"
-    restart: no
 
   nginx-videos:
     image: nginx:${NGINX_VERSION:?NGINX_VERSION}

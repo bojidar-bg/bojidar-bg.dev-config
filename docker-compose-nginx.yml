@@ -3,6 +3,7 @@ services:
     container_name: nginx
     image: nginx:${NGINX_VERSION:?NGINX_VERSION}
     pull_policy: always
+    restart: unless-stopped
     ports:
       - "80:80"
       - "443:443"
@@ -11,12 +12,12 @@ services:
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
-    restart: unless-stopped
 
   dockergen:
     container_name: dockergen-nginx
     image: nginxproxy/docker-gen
     pull_policy: build
+    restart: unless-stopped
     build:
       context: docker-gen
       dockerfile: Dockerfile.alpine
@@ -33,10 +34,10 @@ services:
   acme:
     image: nginxproxy/acme-companion
     pull_policy: build
+    restart: "no"
     build:
       context: acme-companion
       dockerfile: Dockerfile
-    restart: unless-stopped
     volumes_from:
       - nginx
     volumes:
