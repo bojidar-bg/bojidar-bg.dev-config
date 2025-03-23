@@ -2,6 +2,7 @@ services:
   nginx:
     container_name: nginx
     image: nginx:${NGINX_VERSION:?NGINX_VERSION}
+    pull_policy: always
     ports:
       - "80:80"
       - "443:443"
@@ -15,6 +16,7 @@ services:
   dockergen:
     container_name: dockergen-nginx
     image: nginxproxy/docker-gen
+    pull_policy: build
     build:
       context: docker-gen
       dockerfile: Dockerfile.alpine
@@ -31,6 +33,7 @@ services:
 
   acme:
     image: nginxproxy/acme-companion
+    pull_policy: build
     build:
       context: acme-companion
       dockerfile: Dockerfile

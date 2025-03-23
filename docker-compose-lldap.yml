@@ -2,6 +2,7 @@ services:
   lldap:
     container_name: lldap
     image: lldap/lldap:${LLDAP_VERSION:?LLDAP_VERSION}
+    pull_policy: always
     volumes:
       - "lldap_data:/data"
     environment:
